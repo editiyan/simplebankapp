@@ -7,6 +7,7 @@ import (
 )
 
 type Withdrawal struct {
+	domain.BaseTransaction
 	Amount          float64
 	model.AuditInfo //composition reuse
 }

@@ -7,6 +7,7 @@ import (
 )
 
 type Deposit struct {
+	domain.BaseTransaction
 	Amount          float64
 	model.AuditInfo //composition reuse
 }
@@ -20,6 +21,7 @@ func (d Deposit) Apply(acc *model.Account) error {
 }
 
 func (d Deposit) Description() string {
+	d.BaseTransaction.AuditTrail()
 	return fmt.Sprintf("Deposit sebesar %.2f", d.Amount)
 }
 
