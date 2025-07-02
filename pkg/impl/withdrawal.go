@@ -7,12 +7,13 @@ import (
 )
 
 type Withdrawal struct {
-	Amount float64
+	Amount          float64
+	model.AuditInfo //composition reuse
 }
 
 func (w Withdrawal) Apply(acc *model.Account) error {
 	if w.Amount <= 0 {
-		return fmt.Errorf("Jumlah Withdrawal harus > 0")
+		return fmt.Errorf("jumlah Withdrawal harus > 0")
 	}
 	acc.Balance -= w.Amount
 	return nil

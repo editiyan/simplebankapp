@@ -7,12 +7,13 @@ import (
 )
 
 type Deposit struct {
-	Amount float64
+	Amount          float64
+	model.AuditInfo //composition reuse
 }
 
 func (d Deposit) Apply(acc *model.Account) error {
 	if d.Amount <= 0 {
-		return fmt.Errorf("Jumlah Deposit harus > 0")
+		return fmt.Errorf("jumlah Deposit harus > 0")
 	}
 	acc.Balance += d.Amount
 	return nil

@@ -7,14 +7,15 @@ import (
 )
 
 type Transfer struct {
-	Source      *model.Account
-	Beneficiary *model.Account
-	Amount      float64
+	Source          *model.Account
+	Beneficiary     *model.Account
+	Amount          float64
+	model.AuditInfo //composition reuse
 }
 
 func (t Transfer) Apply(accSource *model.Account, accBene *model.Account) error {
 	if t.Amount <= 0 {
-		return fmt.Errorf("Jumlah Transfer harus > 0")
+		return fmt.Errorf("jumlah Transfer harus > 0")
 	}
 	accSource.Balance -= t.Amount
 	accBene.Balance += t.Amount

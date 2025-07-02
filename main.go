@@ -5,9 +5,23 @@ import (
 	"simplebankapp/pkg/domain"
 	"simplebankapp/pkg/impl"
 	"simplebankapp/pkg/model"
+	"time"
 )
 
 func main() {
+
+	d := impl.Deposit{
+		Amount: 100000,
+		AuditInfo: model.AuditInfo{
+			ByUser: "admin",
+			AtTime: time.Now(),
+			Notes:  "Top-up tunai",
+		},
+	}
+
+	fmt.Println(d.Description())
+	fmt.Println("Log :", d.Summary())
+
 	acc := &model.Account{
 		Number:  "123-456-789",
 		Balance: 1000000.0,
